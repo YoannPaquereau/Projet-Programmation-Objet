@@ -4,7 +4,7 @@ class Jeu {
 
 
   public Jeu () {
-    
+
   }
 
   public jouer () {
