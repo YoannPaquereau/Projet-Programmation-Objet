@@ -19,11 +19,14 @@ public class ConteneurFenetre extends JPanel implements ActionListener {
     super.paintComponent(g);
     g.setColor(Color.BLUE);
     g.fillRect(10 + dx, 10, 70, 70);
+System.out.println("paintComponent");
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
     dx = dx + 1;
+	System.out.println("action");
     repaint();
   }
+
 }

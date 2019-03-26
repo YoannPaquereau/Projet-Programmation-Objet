@@ -1,8 +1,4 @@
-import javax.swing.JFrame;
-
 public class Fenetre extends JFrame {
-  ConteneurFenetre pan = new ConteneurFenetre();
-
   public Fenetre() {
     super();
     this.proprietesFenetre();
@@ -14,6 +10,5 @@ public class Fenetre extends JFrame {
     this.setAlwaysOnTop(true);
     this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setContentPane(pan);
-  }
+    this.setVisible(true);
 }
