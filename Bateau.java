@@ -27,21 +27,21 @@ public abstract class Bateau extends Panneau{
   void setColor(Color c) {
     this.color = c;
   }
-  void paintComponent(Graphics g){
+  public void paintComponent(Graphics g){
     super.paintComponent(g);
     g.setColor(this.color);
     int x1, x2, x3, x4;
     int y1, y2, y3, y4;
 
-    x1 = this.x +this.longueur*cos(180);
-    x3 = x1 - this.largueur*cos(90);
-    x2 = (x1 + x3) / 2 + cos(180)*this.longueur/2;
-    x4 = this.x - this.largeur*cos(90);
+    x1 =(int) (this.x + this.longueur * Math.cos(180));
+    x3 =(int) (x1 - this.largeur * Math.cos(90));
+    x2 =(int) ((x1 + x3) / 2 + Math.cos(180) * this.longueur/2);
+    x4 =(int) (this.x - this.largeur * Math.cos(90));
 
-    y1 = this.y +this.longueur*sin(180);
-    y3 = y1 + this.largueur*sin(90);
-    y2 = (y1 + y3) / 2 + sin(180)*this.longueur/2;
-    y4 = this.y + this.largeur*sin(90);
+    y1 =(int) (this.y + this.longueur * Math.sin(180));
+    y3 =(int) (y1 + this.largeur * Math.sin(90));
+    y2 =(int) ((y1 + y3) / 2 + Math.sin(180) * this.longueur/2);
+    y4 =(int) (this.y + this.largeur * Math.sin(90));
 
 
 
@@ -55,7 +55,7 @@ public abstract class Bateau extends Panneau{
 
   void setLongueurLargeur(int x, int y) {
     this.longueur = x;
-    this.largueur = y;
+    this.largeur = y;
   }
 
   Bateau(int x, int y, int v, int dx, int dy, Color c, int lo, int la) {
@@ -64,5 +64,6 @@ public abstract class Bateau extends Panneau{
     this.setDirection(dx, dy);
     this.setColor(c);
     this.setLongueurLargeur(lo, la);
+    this.paintComponent(getGraphics());
   }
 }

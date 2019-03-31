@@ -1,13 +1,16 @@
+import java.awt.Color;
+
 public class Jeu {
 
   // Création méthode torpille, méthode déplacement, collision, couleur dans cette classe
 
 
   public Jeu () {
-
+    Fenetre fenetre = new Fenetre();
+    Sous_marin sm = new Sous_marin(20, 20, 0,0,0,Color.BLUE, 20, 20);
   }
 
-  public jouer () {
+  public void jouer () {
 
   }
   void collision(int x,int y){
@@ -15,6 +18,8 @@ public class Jeu {
 
   }
 
-
+  public static void main(String[] args) {
+    Jeu j = new Jeu();
+  }
 
 }

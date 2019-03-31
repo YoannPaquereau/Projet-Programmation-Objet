@@ -1,4 +1,9 @@
-import java.awt.Color;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.lang.Math;
+
 
 public class Sous_marin extends Bateau implements KeyListener{
 
