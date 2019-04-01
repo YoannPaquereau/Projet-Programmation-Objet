@@ -9,8 +9,7 @@ public class Sous_marin extends Bateau implements KeyListener{
 
 
   public Sous_marin(int x,int y,int v,int dx,int dy,Color c, int lo, int la){
-    super(x,y,v,dx,dy,c, lo, la);
-
+    super(x,y,v,dx,dy,c,lo,la);
   }
 
     public void keyPressed(KeyEvent e)

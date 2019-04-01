@@ -1,6 +1,8 @@
 import java.awt.Color;
+import java.awt.Graphics;
 
-public class Jeu {
+
+public class Jeu extends Panneau {
 
   // Création méthode torpille, méthode déplacement, collision, couleur dans cette classe
 
@@ -15,6 +17,11 @@ public class Jeu {
   }
   void collision(int x,int y){
     //la position du sous marin et des navires militaire ne doivent pas etre identique
+
+  }
+
+  void paintComponent(Graphics g) {
+    super.paintComponent(g);
 
   }
 

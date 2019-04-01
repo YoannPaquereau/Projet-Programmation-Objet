@@ -9,6 +9,8 @@ public abstract class Bateau extends Panneau{
   int dx, dy; //(direction)
   Polygon p;
   int longueur, largeur;
+  int pointX[] = new int[5];
+  int pointY[] = new int[5];
 
   void setPosition(int x, int y) {
     this.x = x;
@@ -27,10 +29,9 @@ public abstract class Bateau extends Panneau{
   void setColor(Color c) {
     this.color = c;
   }
-  public void paintComponent(Graphics g){
-    super.paintComponent(g);
-    g.setColor(this.color);
-    int x1, x2, x3, x4;
+
+  public void mouvement(){
+    /*int x1, x2, x3, x4;
     int y1, y2, y3, y4;
 
     x1 =(int) (this.x + this.longueur * Math.cos(180));
@@ -41,16 +42,20 @@ public abstract class Bateau extends Panneau{
     y1 =(int) (this.y + this.longueur * Math.sin(180));
     y3 =(int) (y1 + this.largeur * Math.sin(90));
     y2 =(int) ((y1 + y3) / 2 + Math.sin(180) * this.longueur/2);
-    y4 =(int) (this.y + this.largeur * Math.sin(90));
+    y4 =(int) (this.y + this.largeur * Math.sin(90));*/
+    this.pointX[0] = this.x;
 
+    this.pointX[1] = (int) (this.x + this.longueur * Math.cos(180));
+    this.pointX[2] = (int) (this.pointX[1] - this.largeur * Math.cos(90));
+    this.pointX[3] = (int) ((this.pointX[1] + this.pointX[2]) / 2 + Math.cos(180) * this.longueur/2);
+    this.pointX[4] = (int) (this.x - this.largeur * Math.cos(90));
 
+    this.pointY[0] = this.y;
+    this.pointY[1] = (int) (this.y + this.longueur * Math.sin(180));
+    this.pointY[2] = (int) (this.pointY[1] + this.largeur * Math.sin(90));
+    this.pointY[3] = (int) ((this.pointY[1] + this.pointY[2]) / 2 + Math.sin(180) * this.longueur/2);
+    this.pointY[4] = (int) (this.y + this.largeur * Math.sin(90));
 
-
-    int[] x ={this.x,x1,x3,x4};
-    int[] y ={this.y,y1,y3,y4};
-
-    this.p = new Polygon(x, y,x.length);
-    g.drawPolygon(this.p);
   }
 
   void setLongueurLargeur(int x, int y) {
@@ -64,6 +69,5 @@ public abstract class Bateau extends Panneau{
     this.setDirection(dx, dy);
     this.setColor(c);
     this.setLongueurLargeur(lo, la);
-    this.paintComponent(getGraphics());
   }
 }
