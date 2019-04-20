@@ -1,69 +1,83 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Polygon;
-import java.lang.Math;
 
-public abstract class Bateau extends Panneau{
-  int x, y, vitesse;
+
+public abstract class Bateau {
+  int x, y; // Position du bateau
+  int x1, x2, x3, x4, y1, y2, y3, y4;   // Points pour le polygone
+  int longueur, largeur, vitesse, angle_inclinaison, longueur_pointe;
   Color color;
-  int dx, dy; //(direction)
-  Polygon p;
-  int longueur, largeur;
+  int dx, dy;
+  int temps;
+  int direction;
 
-  void setPosition(int x, int y) {
+  public void setPosition(int x, int y) {
     this.x = x;
     this.y = y;
   }
 
-  void setVitesse(int v) {
+  public int getX() {
+    return this.x;
+  }
+
+  public int getY() {
+    return this.y;
+  }
+
+  public void setVitesse(int v) {
     this.vitesse = v;
   }
 
-  void setDirection(int dx, int dy) {
+  public void setDirection(int dx, int dy) {
     this.dx = dx;
     this.dy = dy;
   }
 
-  void setColor(Color c) {
+  public void setColor(Color c) {
     this.color = c;
   }
-  public void paintComponent(Graphics g){
-    super.paintComponent(g);
-    g.setColor(this.color);
-    int x1, x2, x3, x4;
-    int y1, y2, y3, y4;
 
-    x1 =(int) (this.x + this.longueur * Math.cos(180));
-    x3 =(int) (x1 - this.largeur * Math.cos(90));
-    x2 =(int) ((x1 + x3) / 2 + Math.cos(180) * this.longueur/2);
-    x4 =(int) (this.x - this.largeur * Math.cos(90));
-
-    y1 =(int) (this.y + this.longueur * Math.sin(180));
-    y3 =(int) (y1 + this.largeur * Math.sin(90));
-    y2 =(int) ((y1 + y3) / 2 + Math.sin(180) * this.longueur/2);
-    y4 =(int) (this.y + this.largeur * Math.sin(90));
-
-
-
-
-    int[] x ={this.x,x1,x3,x4};
-    int[] y ={this.y,y1,y3,y4};
-
-    this.p = new Polygon(x, y,x.length);
-    g.drawPolygon(this.p);
-  }
-
-  void setLongueurLargeur(int x, int y) {
+  public void setLongueurLargeur(int x, int y, int p) {
     this.longueur = x;
     this.largeur = y;
+    this.longueur_pointe = p;
   }
 
-  Bateau(int x, int y, int v, int dx, int dy, Color c, int lo, int la) {
+  public void setPointsPolygon(int x, int y) {
+    this.x1 = (int) (this.x + this.longueur * Math.cos(this.angle_inclinaison));
+    this.y1 = (int) (this.y + this.longueur * Math.sin(this.angle_inclinaison));
+
+    this.x3 = (int) (this.x1 - this.largeur * Math.cos((Math.PI/2) - this.angle_inclinaison));
+    this.y3 = (int) (this.y1 + this.largeur * Math.sin((Math.PI/2) - this.angle_inclinaison));
+
+    this.x4 = (int) (x - this.largeur * Math.cos((Math.PI/2) - this.angle_inclinaison));
+   	this.y4 = (int) (y + this.largeur * Math.sin((Math.PI/2) - this.angle_inclinaison));
+
+    this.x2 = (int) ((this.x1 + this.x3) / 2 + (Math.cos(this.angle_inclinaison) * (this.longueur / this.longueur_pointe)));
+   	this.y2 = (int) ((this.y1 + this.y3) / 2 + (Math.sin(this.angle_inclinaison) * (this.longueur / this.longueur_pointe)));
+  }
+
+  public Bateau(int x, int y, int v, int dx, int dy, Color c, int lo, int la, int angle, int p, int tps) {
     this.setPosition(x, y);
     this.setVitesse(v);
     this.setDirection(dx, dy);
     this.setColor(c);
-    this.setLongueurLargeur(lo, la);
-    this.paintComponent(getGraphics());
+    this.setLongueurLargeur(lo, la, p);
+    this.angle_inclinaison = angle;
+    this.setPointsPolygon(x, y);
+    this.temps = tps;
   }
+
+  public void paint(Graphics g) {
+    int [] x = {this.x, this.x1, this.x2, this.x3, this.x4};
+    int [] y = {this.y, this.y1, this.y2, this.y3, this.y4};
+    g.setColor(this.color);
+    g.fillPolygon(x, y, x.length);
+  }
+
+  public void update(Graphics g) {
+    this.paint(g);
+  }
+
+  public abstract void deplacement();
 }
