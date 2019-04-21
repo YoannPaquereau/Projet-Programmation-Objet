@@ -5,11 +5,12 @@ import java.awt.Graphics;
 public abstract class Bateau {
   int x, y; // Position du bateau
   int x1, x2, x3, x4, y1, y2, y3, y4;   // Points pour le polygone
-  int longueur, largeur, vitesse, angle_inclinaison, longueur_pointe;
+  int longueur, largeur, vitesse, longueur_pointe;
   Color color;
-  int dx, dy;
+  double dx, dy;
   int temps;
   int direction;
+  double angle_inclinaison;
 
   public void setPosition(int x, int y) {
     this.x = x;
@@ -28,7 +29,7 @@ public abstract class Bateau {
     this.vitesse = v;
   }
 
-  public void setDirection(int dx, int dy) {
+  public void setDirection(double dx, double dy) {
     this.dx = dx;
     this.dy = dy;
   }
@@ -57,7 +58,7 @@ public abstract class Bateau {
    	this.y2 = (int) ((this.y1 + this.y3) / 2 + (Math.sin(this.angle_inclinaison) * (this.longueur / this.longueur_pointe)));
   }
 
-  public Bateau(int x, int y, int v, int dx, int dy, Color c, int lo, int la, int angle, int p, int tps) {
+  public Bateau(int x, int y, int v, double dx, double dy, Color c, int lo, int la, double angle, int p, int tps) {
     this.setPosition(x, y);
     this.setVitesse(v);
     this.setDirection(dx, dy);

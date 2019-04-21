@@ -24,8 +24,7 @@ public class Panneau extends JPanel implements KeyListener {
       }
     }
     fenetre.jeu.sous_marin.update(g);
-    System.out.println("x2 = " +fenetre.jeu.sous_marin.x2 + ", y2 = " + fenetre.jeu.sous_marin.y2 + ", x = " + fenetre.jeu.sous_marin.x + ", y = " + fenetre.jeu.sous_marin.y);
-    System.out.println("Angle = "+fenetre.jeu.sous_marin.angle_inclinaison);
+    fenetre.jeu.navMil.update(g);
   }
 
   public void update() {
@@ -58,7 +57,5 @@ public class Panneau extends JPanel implements KeyListener {
   public void keyTyped(KeyEvent e){}
 	public void keyReleased(KeyEvent e){
     this.ke = null;
-		fenetre.jeu.sous_marin.dx = 0;
-		fenetre.jeu.sous_marin.dy = 0;
 	}
 }

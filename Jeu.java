@@ -5,10 +5,12 @@ public class Jeu {
   Fenetre fenetre;
   SousMarin sous_marin;
   BateauCommerce BateauxCommerces [][];
+  NavireMilitaire navMil;
 
   public Jeu() {
-    this.sous_marin = new SousMarin(1100, 100, 2, Color.YELLOW, 30, 10, 3, 3);
+    this.sous_marin = new SousMarin(1100, 100, 2, Color.YELLOW, 30, 10, 3.0, 3);
     this.BateauxCommerces = new BateauCommerce[3][4];
+    this.navMil = new NavireMilitaire(640, 360, 2, Color.YELLOW, 30, 10, 3.0, 3);
     int x = 75;
     int y = 200;
     int cptX , cptY;
@@ -16,7 +18,7 @@ public class Jeu {
       cptX = 0 + (i*-20);
       cptY = 0 + (i*40);
       for (int j = 0; j < BateauxCommerces[i].length; j++) {
-        this.BateauxCommerces[i][j] = new BateauCommerce(x + cptX, y + cptY, 1, 1, 1, Color.RED, 30, 10, -100, 3);
+        this.BateauxCommerces[i][j] = new BateauCommerce(x + cptX, y + cptY, 1, 1.0, 1.0, Color.RED, 30, 10, -100.0, 3);
         cptX = cptX + 75;
         cptY = cptY + 40;
       }
@@ -31,6 +33,7 @@ public class Jeu {
       }
     }
     this.sous_marin.deplacement();
+    this.navMil.deplacement();
     this.fenetre.panel.update();
   }
 }

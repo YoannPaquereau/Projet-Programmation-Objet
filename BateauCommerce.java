@@ -4,7 +4,7 @@ import java.awt.Graphics;
 public class BateauCommerce extends Bateau {
 
 
-  public BateauCommerce(int x, int y, int v, int dx, int dy, Color c, int lo, int la, int angle, int p) {
+  public BateauCommerce(int x, int y, int v, double dx, double dy, Color c, int lo, int la, double angle, int p) {
     super(x, y, v, dx, dy, c, lo, la, angle, p, 2);
   }
 
