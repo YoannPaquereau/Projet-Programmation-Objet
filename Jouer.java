@@ -8,7 +8,7 @@ public class Jouer {
     this.jeu = new Jeu();
     while (true) {
       try {
-        Thread.sleep(50);
+        Thread.sleep(20);
       } catch (InterruptedException e) {
         System.out.println("Erreur");
       }

@@ -5,7 +5,7 @@ public class NavireMilitaire extends Bateau {
   int cmpt,sauvegardeX,sauvegardeY;
 
 public NavireMilitaire(int x, int y, int v, Color c, int lo, int la, double angle, int p){
-  super(x,y,v,0.0,0.0,c,lo,la,angle,p,3);
+  super(x,y,v,0.0,0.0,c,lo,la,angle,p,1);
   this.direction=0;
   this.cmpt=0;
 

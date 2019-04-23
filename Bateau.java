@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Polygon;
 
 
 public abstract class Bateau {
@@ -11,6 +12,7 @@ public abstract class Bateau {
   int temps;
   int direction;
   double angle_inclinaison;
+  Polygon p;
 
   public void setPosition(int x, int y) {
     this.x = x;
@@ -73,7 +75,8 @@ public abstract class Bateau {
     int [] x = {this.x, this.x1, this.x2, this.x3, this.x4};
     int [] y = {this.y, this.y1, this.y2, this.y3, this.y4};
     g.setColor(this.color);
-    g.fillPolygon(x, y, x.length);
+    this.p = new Polygon(x, y, x.length);
+    g.fillPolygon(p);
   }
 
   public void update(Graphics g) {
