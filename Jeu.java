@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Polygon;
 
 public class Jeu {
   Fenetre fenetre;
@@ -32,16 +33,43 @@ public class Jeu {
   public void update() {
     for (int i = 0; i < BateauxCommerces.length; i++) {
       for (int j = 0; j < BateauxCommerces[i].length; j++) {
-        this.BateauxCommerces[i][j].deplacement();
+        if (this.BateauxCommerces[i][j] != null) this.BateauxCommerces[i][j].deplacement();
       }
     }
     this.sous_marin.deplacement();
     if (this.sous_marin.delai > 0) this.sous_marin.delai--;
     this.navMil.deplacement();
     for (int i = 0; i<this.sous_marin.tMarin.length; i++) {
-      if (this.sous_marin.tMarin[i] != null)
-      this.sous_marin.tMarin[i].deplacement();
+      if (this.sous_marin.tMarin[i] != null) {
+        for (int j=0; j<this.BateauxCommerces.length; j++) {
+          for (int k=0; k<this.BateauxCommerces[j].length; k++) {
+            if (this.BateauxCommerces[j][k] != null && this.sous_marin.tMarin[i] != null) {
+              if (collision(this.sous_marin.tMarin[i].p, this.BateauxCommerces[j][k].p)) {
+                this.BateauxCommerces[j][k] = null;
+                this.sous_marin.tMarin[i] = null;
+                this.score += 10;
+              }
+            }
+          }
+        }
+        if (this.sous_marin.tMarin[i] != null) this.sous_marin.tMarin[i].deplacement();
+      }
     }
     this.fenetre.panel.update();
+  }
+
+  public boolean collision(Polygon p1, Polygon p2) {
+    int [] x = p1.xpoints;
+    int [] y = p1.ypoints;
+    for (int i = 0; i<x.length; i++) {
+      if (p2.contains(x[i], y[i])) return true;
+    }
+    x = p2.xpoints;
+    y = p2.ypoints;
+    for (int i = 0; i<x.length; i++) {
+      if (p1.contains(x[i], y[i])) return true;
+    }
+
+    return false;
   }
 }

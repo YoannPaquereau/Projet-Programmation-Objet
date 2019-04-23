@@ -20,7 +20,7 @@ public class Panneau extends JPanel implements KeyListener {
     g.fillRect(0,0,1280,720);
     for (int i=0; i<this.fenetre.jeu.BateauxCommerces.length; i++) {
       for (int j=0; j<this.fenetre.jeu.BateauxCommerces[i].length; j++) {
-        this.fenetre.jeu.BateauxCommerces[i][j].update(g);
+        if (this.fenetre.jeu.BateauxCommerces[i][j] != null) this.fenetre.jeu.BateauxCommerces[i][j].update(g);
       }
     }
     for (int i = 0; i<this.fenetre.jeu.sous_marin.tMarin.length; i++) {

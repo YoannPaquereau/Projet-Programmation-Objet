@@ -68,6 +68,9 @@ public abstract class Bateau {
     this.setLongueurLargeur(lo, la, p);
     this.angle_inclinaison = angle;
     this.setPointsPolygon(x, y);
+    int [] pointX = {this.x, this.x1, this.x2, this.x3, this.x4};
+    int [] pointY = {this.y, this.y1, this.y2, this.y3, this.y4};
+    this.p = new Polygon(pointX, pointY, pointX.length);
     this.temps = tps;
   }
 
