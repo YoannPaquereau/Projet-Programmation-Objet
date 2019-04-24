@@ -9,7 +9,7 @@ public class BateauCommerce extends Bateau {
   }
 
   // Méthode permettant le déplacement de notre bateau de commerce
-  public void deplacement() {
+  void deplacement() {
     this.x = this.x + (int) ((this.dx * this.vitesse * this.temps) / (Math.sqrt (Math.pow(this.dx, 2) + Math.pow(this.dy, 2))));
     this.y = this.y + (int) ((this.dy * this.vitesse * this.temps) / (Math.sqrt (Math.pow(this.dx, 2) + Math.pow(this.dy, 2))));
     this.setPointsPolygon(this.x, this.y);    // On refait tous les points de notre polygone

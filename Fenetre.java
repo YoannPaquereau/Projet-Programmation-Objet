@@ -3,6 +3,7 @@ import javax.swing.JFrame;
 public class Fenetre extends JFrame {
   Panneau panel;
   Jeu jeu;
+  private static final long serialVersionUID = 3540651654054054L;
 
   public Fenetre(Jeu j) {
     this.jeu = j;

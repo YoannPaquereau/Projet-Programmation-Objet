@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Polygon;
 
 public class Jeu {
+
   // Création des éléments de notre jeu
   Fenetre fenetre;
   SousMarin sous_marin;
@@ -56,7 +57,6 @@ public class Jeu {
 
     if (finNiveau) {
       this.niveau += 1;
-      System.out.println("Niveau " + this.niveau);
       if (this.niveau > 1) {
         int x = 1255;
         int y = 200;
@@ -127,6 +127,7 @@ public class Jeu {
     return false;
   }
 
+  // Méthode permettant de mettre à null les bateaux de commerces sortis de l'écran
   public void sortieEcran() {
     int [] x;
     int [] y;

@@ -4,11 +4,11 @@ public class Torpille extends Bateau
 {
 public Torpille (int x, int y, int v, Color c, int lo, int la, double angle, int p){
     super(x, y, v, 0.0, 0.0, c, lo, la, angle, p, 2 );
-    if (this.y1 < this.y3) this.dx += 0.03;
-    else if (this.y1 > this.y3) this.dx -= 0.03;
+    if (this.y1 < this.y3) this.dx += 0.0005;
+    else if (this.y1 > this.y3) this.dx -= 0.0005;
 
-    if (this.y1 < this.y) this.dy -= 0.03;
-    else if (this.y1 > this.y) this.dy += 0.03;
+    if (this.y1 < this.y) this.dy -= 0.0005;
+    else if (this.y1 > this.y) this.dy += 0.0005;
     this.direction = 2;
   }
   public void deplacement(){

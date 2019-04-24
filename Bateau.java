@@ -4,17 +4,17 @@ import java.awt.Polygon;
 
 
 public abstract class Bateau {
-  int x, y; // Position du bateau
-  int x1, x2, x3, x4, y1, y2, y3, y4;   // Points pour le polygone
-  int longueur, largeur, vitesse, longueur_pointe;
-  Color color;
-  double dx, dy;  // Direction du bateau
-  int temps;
-  int direction;
-  double angle_inclinaison;
-  Polygon p;
+  protected int x, y; // Position du bateau
+  protected int x1, x2, x3, x4, y1, y2, y3, y4;   // Points pour le polygone
+  protected int longueur, largeur, vitesse, longueur_pointe;
+  protected Color color;
+  protected double dx, dy;  // Direction du bateau
+  protected int temps;
+  protected int direction;    // Gauche : 1 - Droite : 3 - Avancer : 2 - Immobile : 0 
+  protected double angle_inclinaison;
+  protected Polygon p;
 
-  public void setPosition(int x, int y) {
+  protected void setPosition(int x, int y) {
     this.x = x;
     this.y = y;
   }
@@ -27,27 +27,27 @@ public abstract class Bateau {
     return this.y;
   }
 
-  public void setVitesse(int v) {
+  protected void setVitesse(int v) {
     this.vitesse = v;
   }
 
-  public void setDirection(double dx, double dy) {
+  protected void setDirection(double dx, double dy) {
     this.dx = dx;
     this.dy = dy;
   }
 
-  public void setColor(Color c) {
+  protected void setColor(Color c) {
     this.color = c;
   }
 
-  public void setLongueurLargeur(int x, int y, int p) {
+  protected void setLongueurLargeur(int x, int y, int p) {
     this.longueur = x;
     this.largeur = y;
     this.longueur_pointe = p;
   }
 
   // On créé les points de notre polygone par rapport à notre position x,y
-  public void setPointsPolygon(int x, int y) {
+  protected void setPointsPolygon(int x, int y) {
     this.x1 = (int) (this.x + this.longueur * Math.cos(this.angle_inclinaison));
     this.y1 = (int) (this.y + this.longueur * Math.sin(this.angle_inclinaison));
 
@@ -77,7 +77,7 @@ public abstract class Bateau {
   }
 
   // Méthode permettant de peindre notre bateau sur notre panneau
-  public void paint(Graphics g) {
+  protected void paint(Graphics g) {
     int [] x = {this.x, this.x1, this.x2, this.x3, this.x4};
     int [] y = {this.y, this.y1, this.y2, this.y3, this.y4};
     g.setColor(this.color);
@@ -91,5 +91,5 @@ public abstract class Bateau {
   }
 
   // Méthode abstraite pour le déplacement (dépend de chaque type de bateau)
-  public abstract void deplacement();
+  abstract void deplacement();
 }
