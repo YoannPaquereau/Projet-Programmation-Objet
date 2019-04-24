@@ -20,12 +20,16 @@ public class Fenetre extends JFrame {
     //Termine le processus lorsqu'on clique sur la croix rouge
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    // Création de notre panneau
     this.panel = new Panneau(this);
+
+    // On l'affiche dans notre fenêtre
     this.setContentPane(this.panel);
 
     //Et enfin, la rendre visible
     this.setVisible(true);
 
+    // On empêche le redimensionnement de notre fenêtre
     this.setResizable(false);
 
   }

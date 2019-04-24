@@ -6,14 +6,14 @@ import java.util.ArrayList;
 public class SousMarin extends Bateau {
 
   int cpt;
-  Torpille[]tMarin;
+  Torpille[] tabTorpilles;
   int delai;
 
   public SousMarin(int x, int y, int v, Color c, int lo, int la, double angle, int p){
-    super(x, y, v, 0.0, 0.0, c, lo, la, angle, p, 3);
+    super(x, y, v, 0.0, 0.0, c, lo, la, angle, p, 2);
     this.direction = 0;
     this.cpt=0;
-    this.tMarin=new Torpille[20];
+    this.tabTorpilles=new Torpille[20];
     this.delai = 0;
   }
 

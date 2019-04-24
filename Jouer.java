@@ -1,12 +1,11 @@
 import java.awt.Graphics;
 
 public class Jouer {
-
   Jeu jeu;
 
   public Jouer() {
     this.jeu = new Jeu();
-    while (true) {
+    while (this.jeu.niveau < 3) {
       try {
         Thread.sleep(20);
       } catch (InterruptedException e) {
@@ -14,6 +13,7 @@ public class Jouer {
       }
       this.jeu.update();
     }
+    //System.out.println("Fin du jeu !");
   }
 
   public static void main(String[] args) {

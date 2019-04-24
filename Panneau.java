@@ -2,6 +2,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.event.*;
+import java.awt.Font;
+
 
 public class Panneau extends JPanel implements KeyListener {
   Fenetre fenetre;
@@ -18,21 +20,27 @@ public class Panneau extends JPanel implements KeyListener {
   public void paint(Graphics g) {
     g.setColor(Color.BLUE);
     g.fillRect(0,0,1280,720);
-    for (int i=0; i<this.fenetre.jeu.BateauxCommerces.length; i++) {
-      for (int j=0; j<this.fenetre.jeu.BateauxCommerces[i].length; j++) {
-        if (this.fenetre.jeu.BateauxCommerces[i][j] != null) this.fenetre.jeu.BateauxCommerces[i][j].update(g);
+    if (this.fenetre.jeu.niveau < 3) {
+      for (int i=0; i<this.fenetre.jeu.BateauxCommerces.length; i++) {
+        for (int j=0; j<this.fenetre.jeu.BateauxCommerces[i].length; j++) {
+          if (this.fenetre.jeu.BateauxCommerces[i][j] != null) this.fenetre.jeu.BateauxCommerces[i][j].update(g);
+        }
       }
+      for (int i = 0; i<this.fenetre.jeu.sous_marin.tabTorpilles.length; i++) {
+          if (this.fenetre.jeu.sous_marin.tabTorpilles[i] != null)
+        this.fenetre.jeu.sous_marin.tabTorpilles[i].update(g);
+      }
+      fenetre.jeu.sous_marin.update(g);
+      fenetre.jeu.navMil.update(g);
+      g.setColor(Color.WHITE);
+      g.drawString("Profondeur : " + this.fenetre.jeu.sous_marin.y +"m", 5,20);
+      g.drawString("Nombre torpille(s) : " + (20-this.fenetre.jeu.sous_marin.cpt), 5, 40);
+      g.drawString("Score : " + this.fenetre.jeu.score, 5, 60);
     }
-    for (int i = 0; i<this.fenetre.jeu.sous_marin.tMarin.length; i++) {
-        if (this.fenetre.jeu.sous_marin.tMarin[i] != null)
-      this.fenetre.jeu.sous_marin.tMarin[i].update(g);
+    else {
+      g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
+      g.drawString("Profondeur : " + this.fenetre.jeu.sous_marin.y +"m", 5,20);
     }
-    fenetre.jeu.sous_marin.update(g);
-    fenetre.jeu.navMil.update(g);
-    g.setColor(Color.WHITE);
-    g.drawString("Profondeur : " + this.fenetre.jeu.sous_marin.y +"m", 5,20);
-    g.drawString("Nombre torpille(s) : " + (20-this.fenetre.jeu.sous_marin.cpt), 5, 40);
-    g.drawString("Score : " + this.fenetre.jeu.score, 5, 60);
   }
 
   public void update() {
@@ -56,7 +64,7 @@ public class Panneau extends JPanel implements KeyListener {
 
     if (this.ke.getKeyCode() == KeyEvent.VK_SPACE) {
       if (this.fenetre.jeu.sous_marin.cpt<20 && this.fenetre.jeu.sous_marin.delai == 0) {
-        this.fenetre.jeu.sous_marin.tMarin[this.fenetre.jeu.sous_marin.cpt]=new Torpille(this.fenetre.jeu.sous_marin.x2,this.fenetre.jeu.sous_marin.y2,this.fenetre.jeu.sous_marin.vitesse,Color.GRAY,15,5,this.fenetre.jeu.sous_marin.angle_inclinaison,5);
+        this.fenetre.jeu.sous_marin.tabTorpilles[this.fenetre.jeu.sous_marin.cpt]=new Torpille(this.fenetre.jeu.sous_marin.x2,this.fenetre.jeu.sous_marin.y2,this.fenetre.jeu.sous_marin.vitesse,Color.GRAY,15,5,this.fenetre.jeu.sous_marin.angle_inclinaison,5);
         this.fenetre.jeu.sous_marin.cpt++;
         this.fenetre.jeu.sous_marin.delai = 25;
       }

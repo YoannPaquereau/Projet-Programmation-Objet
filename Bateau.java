@@ -8,7 +8,7 @@ public abstract class Bateau {
   int x1, x2, x3, x4, y1, y2, y3, y4;   // Points pour le polygone
   int longueur, largeur, vitesse, longueur_pointe;
   Color color;
-  double dx, dy;
+  double dx, dy;  // Direction du bateau
   int temps;
   int direction;
   double angle_inclinaison;
@@ -46,6 +46,7 @@ public abstract class Bateau {
     this.longueur_pointe = p;
   }
 
+  // On créé les points de notre polygone par rapport à notre position x,y
   public void setPointsPolygon(int x, int y) {
     this.x1 = (int) (this.x + this.longueur * Math.cos(this.angle_inclinaison));
     this.y1 = (int) (this.y + this.longueur * Math.sin(this.angle_inclinaison));
@@ -60,6 +61,7 @@ public abstract class Bateau {
    	this.y2 = (int) ((this.y1 + this.y3) / 2 + (Math.sin(this.angle_inclinaison) * (this.longueur / this.longueur_pointe)));
   }
 
+  // Constructeur du bateau
   public Bateau(int x, int y, int v, double dx, double dy, Color c, int lo, int la, double angle, int p, int tps) {
     this.setPosition(x, y);
     this.setVitesse(v);
@@ -74,6 +76,7 @@ public abstract class Bateau {
     this.temps = tps;
   }
 
+  // Méthode permettant de peindre notre bateau sur notre panneau
   public void paint(Graphics g) {
     int [] x = {this.x, this.x1, this.x2, this.x3, this.x4};
     int [] y = {this.y, this.y1, this.y2, this.y3, this.y4};
@@ -82,9 +85,11 @@ public abstract class Bateau {
     g.fillPolygon(p);
   }
 
+  // Met à jour notre bateau sur notre écran (pas vraiment utile)
   public void update(Graphics g) {
     this.paint(g);
   }
 
+  // Méthode abstraite pour le déplacement (dépend de chaque type de bateau)
   public abstract void deplacement();
 }
